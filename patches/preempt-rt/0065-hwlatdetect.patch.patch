@@ -138,7 +138,7 @@ index 72aef82..8adbff7 100644
 ++obj-$(CONFIG_HWLAT_DETECTOR)	+= hwlat_detector.o
  obj-$(CONFIG_GPEVT)		+= gpevt.o
  obj-$(CONFIG_GROVE_I2C)		+= grove-i2c.o
- obj-y				+= cape/
+ obj-$(CONFIG_TIEQEP)      += tieqep.o
 diff --git a/drivers/misc/hwlat_detector.c b/drivers/misc/hwlat_detector.c
 new file mode 100644
 index 0000000..b7b7c90
