@@ -1,0 +1,26 @@
+From c5c713c5c57b067fdbb1c10be258f766abfad3cd Mon Sep 17 00:00:00 2001
+From: Andrew Tridgell <tridge@samba.org>
+Date: Thu, 21 Aug 2014 15:38:41 +1000
+Subject: [PATCH 6/6] force 2nd I2C bus to 400kHz
+
+---
+ drivers/i2c/busses/i2c-omap.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/i2c/busses/i2c-omap.c b/drivers/i2c/busses/i2c-omap.c
+index 0d55dbd..edcdbd7 100644
+--- a/drivers/i2c/busses/i2c-omap.c
++++ b/drivers/i2c/busses/i2c-omap.c
+@@ -1127,6 +1127,9 @@ omap_i2c_probe(struct platform_device *pdev)
+ 		dev->set_mpu_wkup_lat = pdata->set_mpu_wkup_lat;
+ 	}
+ 
++        // force 400kHz bus. Where can we configure this properly?
++        dev->speed = 400;
++
+ 	dev->pins = devm_pinctrl_get_select_default(&pdev->dev);
+ 	if (IS_ERR(dev->pins)) {
+ 		if (PTR_ERR(dev->pins) == -EPROBE_DEFER)
+-- 
+1.8.3.2
+
